@@ -1,17 +1,10 @@
-import Footer from "../../../components/patterns/Footer";
-import Link from "../../../components/Link";
-import { theme } from "../../../theme/theme";
-import {
-  Image,
-  Box,
-  Text,
-  Icon,
-  Input,
-  Button,
-} from "../../../theme/components";
+import Footer from "../../components/patterns/Footer";
+import Link from "../../components/Link";
+import { theme } from "../../theme/theme";
+import { Image, Box, Text, Icon, Input, Button } from "../../theme/components";
 
-const LOGO_ALURA_URL = "images/alura-logo.svg";
-const SIDE_IMAGE_URL = "images/alura-cases.png";
+const LOGO_ALURA_URL = "/images/alura-logo.svg";
+const SIDE_IMAGE_URL = "/images/alura-cases.png";
 
 function SideImage() {
   return (
@@ -211,13 +204,7 @@ export default function HomeScreen() {
                         alignItems: "center",
                       }}
                     >
-                      <Text
-                        styleSheet={{
-                          textVariant: "inherit",
-                        }}
-                      >
-                        Confira as principais dúvidas
-                      </Text>
+                      <Text>Confira as principais dúvidas</Text>
                       <Icon
                         styleSheet={{
                           iconVariant: "chevronRight",
@@ -293,7 +280,6 @@ export default function HomeScreen() {
                       as="label"
                       htmlFor="email"
                       styleSheet={{
-                        textVariant: "inherit",
                         srOnly: true,
                       }}
                     >
@@ -318,9 +304,7 @@ export default function HomeScreen() {
                   >
                     <Button
                       type="submit"
-                      styleSheet={{
-                        buttonVariant: "primary",
-                      }}
+                      // button variant
                     >
                       Cadastrar
                     </Button>
