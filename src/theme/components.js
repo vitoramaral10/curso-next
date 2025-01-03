@@ -1,6 +1,6 @@
-import React from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import * as iconSet from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import React from "react";
 
 import { theme } from "./theme";
 
@@ -52,7 +52,7 @@ function renderCSS(props, currentBreakpoint) {
 
 export function Box({
   as,
-  styleSheet: { focus = {}, hover = {}, srOnly = false, ...styleSheet } = {},
+  styleSheet: { focus = {}, hover, srOnly, ...styleSheet } = {},
   ...props
 }) {
   const Tag = as || "div";
@@ -186,10 +186,13 @@ export function Icon({ as, styleSheet, ...props }) {
 }
 
 export function Text({ as, styleSheet, ...props }) {
-  const styleSheetUpdated = {
-    fontSize: "inherit",
-    ...styleSheet,
-  };
+  const {
+    textVariant = {
+      fontSize: "inherit",
+    },
+    ...restStyleSheet
+  } = styleSheet;
+  const styleSheetUpdated = { ...textVariant, ...restStyleSheet };
   const tag = as || "span";
   return <Box as={tag} styleSheet={styleSheetUpdated} {...props} />;
 }
@@ -207,7 +210,7 @@ Image.defaultProps = {
   styleSheet: {},
 };
 
-export function Input({ as, styleSheet = {}, ...props }) {
+export function Input({ as, styleSheet, ...props }) {
   const tag = "input";
   const finalStyleSheet = {
     transition: "all 0.2s ease-in-out",
@@ -235,11 +238,7 @@ Input.defaultProps = {
 };
 
 export function Button({ as, styleSheet, ...props }) {
-  const buttonVariant = "primary";
-  styleSheet = {
-    buttonVariant,
-    ...styleSheet,
-  };
+  const { buttonVariant = "primary", ...restStyleSheet } = styleSheet;
   const tag = "button";
 
   const finalStyleSheet = {
@@ -267,7 +266,7 @@ export function Button({ as, styleSheet, ...props }) {
       backgroundColor: theme.colors[buttonVariant][700],
       boxShadow: `0 5px 10px -5px ${theme.colors.neutral[999]}93`,
     },
-    ...styleSheet,
+    ...restStyleSheet,
   };
 
   return <Text as={tag} styleSheet={finalStyleSheet} {...props} />;
