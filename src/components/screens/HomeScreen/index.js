@@ -1,7 +1,7 @@
-import Footer from "../../components/patterns/Footer";
-import Link from "../../components/Link";
-import { theme } from "../../theme/theme";
-import { Image, Box, Text, Icon, Input, Button } from "../../theme/components";
+import Footer from "../../../components/patterns/Footer";
+import Link from "../../../components/Link";
+import { theme } from "../../../theme/theme";
+import { Image, Box, Text, Icon, Input, Button } from "../../../theme/components";
 
 const LOGO_ALURA_URL = "https://fakeimg.pl/94x44";
 const SIDE_IMAGE_URL = "https://fakeimg.pl/2878x1640";

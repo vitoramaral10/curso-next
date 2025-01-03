@@ -52,7 +52,7 @@ function renderCSS(props, currentBreakpoint) {
 
 export function Box({
   as,
-  styleSheet: { focus, hover, srOnly, ...styleSheet },
+  styleSheet: { focus = {}, hover = {}, srOnly = false, ...styleSheet } = {},
   ...props
 }) {
   const Tag = as || "div";
@@ -186,13 +186,10 @@ export function Icon({ as, styleSheet, ...props }) {
 }
 
 export function Text({ as, styleSheet, ...props }) {
-  const {
-    textVariant = {
-      fontSize: "inherit",
-    },
-    ...restStyleSheet
-  } = styleSheet;
-  const styleSheetUpdated = { ...textVariant, ...restStyleSheet };
+  const styleSheetUpdated = {
+    fontSize: "inherit",
+    ...styleSheet,
+  };
   const tag = as || "span";
   return <Box as={tag} styleSheet={styleSheetUpdated} {...props} />;
 }
@@ -210,7 +207,7 @@ Image.defaultProps = {
   styleSheet: {},
 };
 
-export function Input({ as, styleSheet, ...props }) {
+export function Input({ as, styleSheet = {}, ...props }) {
   const tag = "input";
   const finalStyleSheet = {
     transition: "all 0.2s ease-in-out",
@@ -238,7 +235,11 @@ Input.defaultProps = {
 };
 
 export function Button({ as, styleSheet, ...props }) {
-  const { buttonVariant = "primary", ...restStyleSheet } = styleSheet;
+  const buttonVariant = "primary";
+  styleSheet = {
+    buttonVariant,
+    ...styleSheet,
+  };
   const tag = "button";
 
   const finalStyleSheet = {
@@ -266,7 +267,7 @@ export function Button({ as, styleSheet, ...props }) {
       backgroundColor: theme.colors[buttonVariant][700],
       boxShadow: `0 5px 10px -5px ${theme.colors.neutral[999]}93`,
     },
-    ...restStyleSheet,
+    ...styleSheet,
   };
 
   return <Text as={tag} styleSheet={finalStyleSheet} {...props} />;
